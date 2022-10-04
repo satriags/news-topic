@@ -23,10 +23,15 @@ export const updateTopic = async (id: number, topic: any) => {
         'WHERE id_topic = $3 RETURNING id_topic',
         [topic.name_topic, created_at,  id])
 }
+
 export const deleteTopic = async (id: number) => {
    let deleted_at = new Date();
     
 
     return await db.any('UPDATE topic SET deleted_at = $1 WHERE id_topic = $2', [deleted_at,id])
     // return await db.any('DELETE FROM topic WHERE id_topic = $1', [id])
+}
+
+export const checkDuplicate = (title : any) => {
+    return db.query("SELECT * FROM topic WHERE name_topic = $1 AND deleted_at IS NULL", [title])
 }

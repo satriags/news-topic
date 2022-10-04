@@ -1,5 +1,6 @@
 import express,{Request, Response} from 'express';
 import * as topicService from '../services/topic-service'
+import * as articelService from '../services/articel-service'
 
 const router = express.Router();
 
@@ -35,6 +36,15 @@ router.post('/topic', (req: Request, res: Response) => {
     return false;
     }
     
+    topicService.checkDuplicate(req.body.name_topic).then(
+        (result) => {
+            console.log(result.length);
+            if (result.length != 0 ) {
+                res.status(200).json({
+                    message: "Topik yang anda masukkan sama dengan topik yang lain"
+                });
+            } else {
+                
     topicService.saveTopic(req.body).then(
         () => {
             res.status(200).json({
@@ -46,16 +56,30 @@ router.post('/topic', (req: Request, res: Response) => {
                 message: "Error occured" + error.message
             })
     });
+                
+                
+            }
+        });
+
 });
 
 
 // ========== EDIT/UPDATE TOPIC
 router.put('/topic/:id', (req: Request, res: Response) => {
 
+
+    topicService.checkDuplicate(req.body.name_topic).then(
+        (result) => {
+            if (result.length != 0 && result[0].id_topic != parseInt(req.params.id))  {
+                res.status(200).json({
+                    message: "Topik yang anda masukkan sama dengan topik yang lain"
+                });
+            } else { 
+
     topicService.updateTopic(parseInt(req.params.id), req.body).then(
         () => {
             res.status(200).json({
-                message: "Topic was successfully updated!"
+                message: "Topic berhasil diubah!"
             });
         }
     ).catch((error)=>{
@@ -63,17 +87,37 @@ router.put('/topic/:id', (req: Request, res: Response) => {
             message: "Error occured" + error.message
         })
     });
+                
+}
+});
 });
 
 
 // ========== DELETE TOPIC
 router.delete('/topic/:id', (req: Request, res: Response) => {
-    topicService.deleteTopic(parseInt(req.params.id)).then(
-        (topic) => {
+
+    articelService.getArticelByTopicId(parseInt(req.params.id)).then((articel) => { 
+
+        if (articel.length != 0) {
             res.status(200).json({
-                message: "Topic was successfully deleted!"
+                message: "Topik tidak dapat di hapus, karena ada artikel yang memakai topik tersebut dan berstatus published atau draft"
             });
-        }).catch((error) => res.send(error.message))
-    ;
+        } else { 
+
+            topicService.deleteTopic(parseInt(req.params.id)).then(
+                (topic) => {
+                    res.status(200).json({
+                        message: "Topic berhasil dihapus!"
+                    });
+                }).catch((error) => res.send(error.message));
+
+        }
+
+    });
+    
 });
+
+
+
+
 export default router

@@ -69,10 +69,22 @@ router.post('/articel', (req: Request, res: Response) => {
 // ========== EDIT/UPDATE ARTICEL
 router.put('/articel/:id', (req: Request, res: Response) => {
 
+    
+    // CEK JIKA JUDUL ADA YANG SAMA
+    articelService.checkDuplicate(req.body.title_articel).then(
+        (result) => {
+
+            // PENGECEKAN jika artikel yang di edit miliknya sendiri judulnya sama gpp
+            if (result.length != 0 && result[0].id_articel != parseInt(req.params.id)) {
+                res.status(200).json({
+                    message: "Judul yang anda masukkan sama dengan judul artikel yang lain"
+                });
+            } else {
+                
     articelService.updateArticel(parseInt(req.params.id), req.body).then(
         () => {
             res.status(200).json({
-                message: "Articel was successfully updated!"
+                message: "Articel berhasil diubah!"
             });
         }
     ).catch((error)=>{
@@ -80,6 +92,9 @@ router.put('/articel/:id', (req: Request, res: Response) => {
             message: "Error occured" + error.message
         })
     });
+                
+            }
+        });
 });
 
 
@@ -88,7 +103,7 @@ router.delete('/articel/:id', (req: Request, res: Response) => {
     articelService.deleteArticel(parseInt(req.params.id)).then(
         (articel) => {
             res.status(200).json({
-                message: "Article was successfully deleted!"
+                message: "Article berhasil dihapus !"
             });
         }).catch((error) => res.send(error.message))
     ;

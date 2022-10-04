@@ -1,12 +1,13 @@
 import {db} from '../connection'
 
-
-
 export const getArticel = async () => {
     return await db.query("SELECT A.status_articel,A.id_articel,T.name_topic,A.title_articel,A.slug_articel,A.content_articel,T.id_topic,A.created_at FROM articel A JOIN topic T ON T.id_topic=A.id_topic AND A.status_articel NOT IN ('deleted') ORDER BY T.id_topic DESC")
 }
 export async function getArticelById(id: number) {
-    return await db.any('SELECT * FROM articel WHERE id_articel = $1', [id])
+    return await db.any("SELECT A.status_articel,A.id_articel,T.name_topic,A.title_articel,A.slug_articel,A.content_articel,T.id_topic,A.created_at FROM articel A JOIN topic T ON T.id_topic=A.id_topic AND A.status_articel NOT IN ('deleted')  AND A.id_articel = $1", [id])
+}
+export async function getArticelByTopicId(id: number) {
+    return await db.any('SELECT * FROM articel WHERE id_topic = $1 AND deleted_at IS NULL', [id])
 }
 
 export const saveArticel = async (articel: any) => {
