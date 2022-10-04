@@ -17,7 +17,7 @@ const server = (0, fastify_1.default)();
 server.get('/ping', (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
     return 'pong\n';
 }));
-server.listen({ port: 8080 }, (err, address) => {
+server.listen({ port: 3000 }, (err, address) => {
     if (err) {
         console.error(err);
         process.exit(1);
