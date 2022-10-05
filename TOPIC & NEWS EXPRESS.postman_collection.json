@@ -1,0 +1,469 @@
+{
+	"info": {
+		"_postman_id": "f81ee0d8-6ddc-4d7b-af6e-639d3ef8ff41",
+		"name": "TOPIC & NEWS EXPRESS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9647251"
+	},
+	"item": [
+		{
+			"name": "NEWS INDEX (PUBLISHED)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:6060",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEWS DETAIL ARTICEL (PUBLISHED)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6060/news/articel/menit-ke-4401-giliran-phil-foden-cetak-apa-saja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"news",
+						"articel",
+						"menit-ke-4401-giliran-phil-foden-cetak-apa-saja"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEWS SEARCH & FILTER (PUBLISHED)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"keywords\": \"menit\",\r\n    \"filter_topic\": \"28\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6060/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ARTICEL LIST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6060/articel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"articel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ARTICEL FIND",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6060/articel/51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"articel",
+						"51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ARTICEL SAVE",
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title_articel\": \"Ronaldo mencetak goal ke-30 dipertandingan kali ini\",\r\n    \"content_articel\":\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, fuga et. Cum, minima tempora perspiciatis deleniti unde tempore nihil accusamus aspernatur officiis sapiente repellat quam eveniet voluptatibus. Quibusdam natus aspernatur nesciunt velit optio molestiae et! Doloremque beatae amet, voluptates exercitationem nam similique ad veniam commodi molestias, aperiam laboriosam nihil temporibus esse et ea debitis quae? Dolor architecto expedita rem nihil quasi. Error eius doloremque blanditiis, quia culpa, quod possimus impedit sequi accusantium, ratione tempora velit?\",\r\n    \"status_articel\":\"published\",\r\n    \"id_topic\":\"28\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6060/articel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"articel"
+					],
+					"query": [
+						{
+							"key": "capital",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "continent",
+							"value": "23423",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "sdfsd",
+							"disabled": true
+						},
+						{
+							"key": "nationality",
+							"value": "fdsfsd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ARTICEL EDIT",
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title_articel\": \"Messi mencetak goal ke-30 dipertandingan kali ini\",\r\n    \"content_articel\":\"Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, fuga et. Cum, minima tempora perspiciatis deleniti unde tempore nihil accusamus aspernatur ofwwficiis sapiente repellat quam eveniet voluptatibus. Quibusdam natus aspernatur nesciunt velit optio molestiae et! Doloremque beatae amet, voluptates exercitationem nam similique ad veniam commodi molestias, aperiam laboriosam nihil temporibus esse et ea debitis quae? Dolor architecto expedita rem nihil quasi. Error eius doloremque blanditiis, quia culpa, quod possimus impedit sequi accusantium, ratione tempora velit?\",\r\n    \"status_articel\":\"published\",\r\n    \"id_topic\":\"35\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6060/articel/51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"articel",
+						"51"
+					],
+					"query": [
+						{
+							"key": "capital",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "continent",
+							"value": "23423",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "sdfsd",
+							"disabled": true
+						},
+						{
+							"key": "nationality",
+							"value": "fdsfsd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ARTICEL DELETE",
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6060/articel/51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"articel",
+						"51"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "continent",
+							"value": "23423",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "sdfsd",
+							"disabled": true
+						},
+						{
+							"key": "nationality",
+							"value": "fdsfsd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TOPIC LIST",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6060/topic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"topic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TOPIC FIND",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6060/topic/354",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"topic",
+						"354"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TOPIC SAVE",
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name_topic\": \"KOMPUTER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6060/topic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"topic"
+					],
+					"query": [
+						{
+							"key": "capital",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "continent",
+							"value": "23423",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "sdfsd",
+							"disabled": true
+						},
+						{
+							"key": "nationality",
+							"value": "fdsfsd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TOPIC EDIT",
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name_topic\": \"KOMPUTER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6060/topic/28",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"topic",
+						"28"
+					],
+					"query": [
+						{
+							"key": "capital",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "code",
+							"value": "4",
+							"disabled": true
+						},
+						{
+							"key": "continent",
+							"value": "23423",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "sdfsd",
+							"disabled": true
+						},
+						{
+							"key": "nationality",
+							"value": "fdsfsd",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TOPIC DELETE",
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6060/topic/36",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6060",
+					"path": [
+						"topic",
+						"36"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
