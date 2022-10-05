@@ -17,7 +17,7 @@ LIST REST API TOPIC & NEWS
 
 ## Instalasi
 
-Anda dapat menjalankan pada repository "express-news-topic"
+Anda dapat menjalankan program pada repository "express-news-topic" ketik command berikut
 
 ```sh
 npm run dev
