@@ -100,11 +100,22 @@ router.put('/articel/:id', (req: Request, res: Response) => {
 
 // ========== DELETE ARTICEL
 router.delete('/articel/:id', (req: Request, res: Response) => {
+
+    
     articelService.deleteArticel(parseInt(req.params.id)).then(
         (articel) => {
-            res.status(200).json({
-                message: "Article berhasil dihapus !"
-            });
+            console.log(articel);
+            if (articel == false) {
+               
+                res.status(200).json({
+                    message: "Article tidak temukan !"
+                });
+            } else {
+                
+                res.status(200).json({
+                    message: "Article berhasil dihapus !"
+                });
+           }
         }).catch((error) => res.send(error.message))
     ;
 });

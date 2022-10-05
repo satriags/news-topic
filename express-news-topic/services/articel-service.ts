@@ -4,7 +4,18 @@ export const getArticel = async () => {
     return await db.query("SELECT A.status_articel,A.id_articel,T.name_topic,A.title_articel,A.slug_articel,A.content_articel,T.id_topic,A.created_at FROM articel A JOIN topic T ON T.id_topic=A.id_topic WHERE A.status_articel NOT IN ('deleted') ORDER BY T.id_topic DESC")
 }
 export async function getArticelById(id: number) {
-    return await db.any("SELECT A.status_articel,A.id_articel,T.name_topic,A.title_articel,A.slug_articel,A.content_articel,T.id_topic,A.created_at FROM articel A JOIN topic T ON T.id_topic=A.id_topic WHERE A.status_articel NOT IN ('deleted')  AND A.id_articel = $1", [id])
+
+
+
+    let check = await db.any("SELECT A.status_articel,A.id_articel,T.name_topic,A.title_articel,A.slug_articel,A.content_articel,T.id_topic,A.created_at FROM articel A JOIN topic T ON T.id_topic=A.id_topic WHERE A.status_articel NOT IN ('deleted')  AND A.id_articel = $1", [id])
+    if (check.length > 0) {
+            
+        return check;
+    } else {
+        return {
+            message: "artikel tidak ditemukan"
+        };
+    }
 }
 export async function getArticelByTopicId(id: number) {
     return await db.any('SELECT * FROM articel WHERE id_topic = $1 AND deleted_at IS NULL', [id])
@@ -35,7 +46,17 @@ export const deleteArticel = async (id: number) => {
     
    let deleted_at = new Date();
     
-    return await db.any("UPDATE articel SET status_articel='deleted',deleted_at = $1 WHERE id_articel = $2", [deleted_at,id])
+   let check = await db.any("SELECT A.status_articel,A.id_articel,T.name_topic,A.title_articel,A.slug_articel,A.content_articel,T.id_topic,A.created_at FROM articel A JOIN topic T ON T.id_topic=A.id_topic WHERE  A.id_articel = $1", [id])
+   console.log(check)
+    if (check.length > 0) {
+           
+        await db.any("UPDATE articel SET status_articel='deleted',deleted_at = $1 WHERE id_articel = $2", [deleted_at, id])
+        return true;
+   } else {
+       return false;
+   }
+   
+    
     // return await db.any('DELETE FROM articel WHERE id_articel = $1', [id])
 }
 
