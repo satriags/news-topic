@@ -1,3 +1,16 @@
+## Instalasi
+
+Anda dapat menjalankan program pada repository "express-news-topic" ketik command berikut
+
+```sh
+npm run dev
+```
+Program akan berjalan pada server
+```sh
+http://localhost:6060
+```
+Program yang dibuat menggunakan NodeJS Framework Express dengan TypeScript.
+
 # REST API
 
 LIST REST API TOPIC & NEWS
@@ -14,17 +27,3 @@ LIST REST API TOPIC & NEWS
 11. [POST] TOPIC SAVE........................................................................................................... 12
 12. [PUT] TOPIC EDIT .............................................................................................................. 13
 13. [DEL] TOPIC DELETE........................................................................................................ 14
-
-## Instalasi
-
-Anda dapat menjalankan program pada repository "express-news-topic" ketik command berikut
-
-```sh
-npm run dev
-```
-Program akan berjalan pada server
-```sh
-http://localhost:6060
-```
-Program yang dibuat menggunakan NodeJS Framework Express dengan TypeScript.
-
